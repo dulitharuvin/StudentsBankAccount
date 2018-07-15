@@ -9,18 +9,18 @@ package studentsbankaccount;
  *
  * @author dulit
  */
-public class Student extends Thread {
+public class StudentLoanCompany extends Thread {
 
-    private final String studentName;
+    private final String companyName;
     private final String accountNumber;
     private final String threadGroup;
     private final CurrentBankAccount account;
 
     // private volatile ThreadState state;
-    public Student(String studentName, String accountNumber, ThreadGroup threadGroup, CurrentBankAccount account) {
-        super(threadGroup, studentName);
+    public StudentLoanCompany(String companyName, String accountNumber, ThreadGroup threadGroup, CurrentBankAccount account) {
+        super(threadGroup, companyName);
 
-        this.studentName = studentName;
+        this.companyName = companyName;
         this.accountNumber = accountNumber;
         this.threadGroup = threadGroup.getName();
         this.account = account;
@@ -28,13 +28,15 @@ public class Student extends Thread {
 
     @Override
     public void run() {
-        Transaction lottery = new Transaction(getName(), 100000);
-        account.deposit(lottery);
+        for (int i = 0; i < 3; i++) {
+            Transaction loan = new Transaction(getName(), 2000);
+            account.deposit(loan);
 
-        try {
-            Thread.sleep(2000);
-        } catch (InterruptedException ex) {
-            System.out.println(ex.toString());
+            try {
+                Thread.sleep(2000);
+            } catch (InterruptedException ex) {
+                System.out.println(ex.toString());
+            }
         }
     }
 }
