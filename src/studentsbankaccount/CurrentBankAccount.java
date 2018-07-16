@@ -11,34 +11,43 @@ package studentsbankaccount;
  */
 public class CurrentBankAccount implements BankAccount{
 
+    private int accountBalance = 0;
+    private int accountNumber = 0;
+    private String accountHolder = "";
+
+    public CurrentBankAccount(int accountNumber, String accountHolder) {
+        this.accountNumber = accountNumber;
+        this.accountHolder = accountHolder;
+    }
+    
     @Override
     public int getBalance() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return accountBalance;
     }
 
     @Override
     public int getAccountNumber() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return accountNumber;
     }
 
     @Override
     public String getAccountHolder() {
+        return accountHolder;
+    }
+
+    @Override
+    public synchronized void deposit(Transaction t) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public void deposit(Transaction t) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void withdrawal(Transaction t) {
+    public synchronized void withdrawal(Transaction t) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     public boolean isOverdrawn() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return accountBalance < 0;
     }
 
     @Override
