@@ -39,12 +39,14 @@ public class CurrentBankAccount implements BankAccount{
 
     @Override
     public synchronized void deposit(Transaction t) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        accountBalance += t.getAmount();
+        statement.addTransaction(accountHolder, accountNumber, accountBalance);
     }
 
     @Override
     public synchronized void withdrawal(Transaction t) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        accountBalance -= t.getAmount();
+        statement.addTransaction(accountHolder, accountNumber, accountBalance);
     }
 
     @Override
