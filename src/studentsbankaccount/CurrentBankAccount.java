@@ -9,7 +9,7 @@ package studentsbankaccount;
  *
  * @author dulit
  */
-public class CurrentBankAccount implements BankAccount{
+public class CurrentBankAccount implements BankAccount {
 
     private int accountBalance = 0;
     private Statement statement;
@@ -21,7 +21,7 @@ public class CurrentBankAccount implements BankAccount{
         this.accountHolder = accountHolder;
         statement = new Statement(accountHolder, accountNumber);
     }
-    
+
     @Override
     public int getBalance() {
         return accountBalance;
@@ -45,8 +45,10 @@ public class CurrentBankAccount implements BankAccount{
 
     @Override
     public synchronized void withdrawal(Transaction t) {
-        accountBalance -= t.getAmount();
-        statement.addTransaction(accountHolder, accountNumber, accountBalance);
+        if (!this.isOverdrawn()) {
+            accountBalance -= t.getAmount();
+            statement.addTransaction(accountHolder, accountNumber, accountBalance);
+        }
     }
 
     @Override
@@ -56,7 +58,7 @@ public class CurrentBankAccount implements BankAccount{
 
     @Override
     public void printStatement() {
-       statement.print();
+        statement.print();
     }
-    
+
 }
