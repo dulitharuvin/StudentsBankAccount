@@ -25,7 +25,7 @@ public class BankingSystem {
         Student std1 = new Student("Jim", ba1.getAccountNumber() + ba1.getAccountHolder(), tg1, ba1);
         std1.start();       
         Student std2 = new Student("Sue", ba2.getAccountNumber() + ba2.getAccountHolder(), tg1, ba2);
-        std1.start();        
+        std2.start();        
         
         StudentLoanCompany std1Loan = new StudentLoanCompany("Loan Company 1", tg2, new CurrentBankAccount[] { ba1, ba2 });
         std1Loan.start();                
