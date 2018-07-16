@@ -15,8 +15,7 @@ public class BankingSystem {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
-
+      
         CurrentBankAccount ba1 = new CurrentBankAccount(1, "Jims account");
         CurrentBankAccount ba2 = new CurrentBankAccount(2, "Sues account");
         

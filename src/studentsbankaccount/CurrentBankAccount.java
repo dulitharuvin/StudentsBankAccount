@@ -12,12 +12,14 @@ package studentsbankaccount;
 public class CurrentBankAccount implements BankAccount{
 
     private int accountBalance = 0;
+    private Statement statement;
     private int accountNumber = 0;
     private String accountHolder = "";
 
     public CurrentBankAccount(int accountNumber, String accountHolder) {
         this.accountNumber = accountNumber;
         this.accountHolder = accountHolder;
+        statement = new Statement(accountHolder, accountNumber);
     }
     
     @Override
@@ -52,7 +54,7 @@ public class CurrentBankAccount implements BankAccount{
 
     @Override
     public void printStatement() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+       statement.print();
     }
     
 }
