@@ -19,8 +19,8 @@ public class BankingSystem {
         CurrentBankAccount ba1 = new CurrentBankAccount(1, "Jims account");
         CurrentBankAccount ba2 = new CurrentBankAccount(2, "Sues account");
         
-        ThreadGroup tg1 = new ThreadGroup("Jim's Group");           
-        ThreadGroup tg2 = new ThreadGroup("Sue's Group");           
+        ThreadGroup tg1 = new ThreadGroup("Student's Group");           
+        ThreadGroup tg2 = new ThreadGroup("Account Handler Group");           
 
         Student std1 = new Student("Jim", ba1.getAccountNumber() + ba1.getAccountHolder(), tg1, ba1);
         std1.start();       
