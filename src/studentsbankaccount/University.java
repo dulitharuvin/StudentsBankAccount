@@ -12,25 +12,24 @@ package studentsbankaccount;
 public class University extends Thread {
 
     private final String universityName;
-    private final String accountNumber;
     private final String threadGroup;
-    private final CurrentBankAccount account;
+    private final CurrentBankAccount[] account;
 
     // private volatile ThreadState state;
-    public University(String universityName, String accountNumber, ThreadGroup threadGroup, CurrentBankAccount account) {
+    public University(String universityName, ThreadGroup threadGroup, CurrentBankAccount[] account) {
         super(threadGroup, universityName);
 
         this.universityName = universityName;
-        this.accountNumber = accountNumber;
         this.threadGroup = threadGroup.getName();
         this.account = account;
     }
 
     @Override
     public void run() {
+        for(int j = 0; j < account.length ; j++){   
         for (int i = 0; i < 3; i++) {
             Transaction courseFee = new Transaction(getName(), 2500);
-            account.withdrawal(courseFee);
+            account[j].withdrawal(courseFee);
 
             try {
                 Thread.sleep(2000);
@@ -38,6 +37,6 @@ public class University extends Thread {
                 System.out.println(ex.toString());
             }
         }
+        }
     }
-
 }
