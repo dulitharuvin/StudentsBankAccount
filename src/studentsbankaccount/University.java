@@ -30,7 +30,7 @@ public class University extends Thread {
         for (int i = 0; i < 3; i++) {
             Transaction courseFee = new Transaction(getName(), 2500);
             account[j].withdrawal(courseFee);
-
+            account[j].printStatement();
             try {
                 Thread.sleep(2000);
             } catch (InterruptedException ex) {

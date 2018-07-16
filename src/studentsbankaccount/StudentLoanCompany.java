@@ -30,7 +30,7 @@ public class StudentLoanCompany extends Thread {
             for (int i = 0; i < 3; i++) {
                 Transaction loan = new Transaction(getName(), 2000);
                 account[j].deposit(loan);
-
+                account[j].printStatement();
                 try {
                     Thread.sleep(2000);
                 } catch (InterruptedException ex) {
