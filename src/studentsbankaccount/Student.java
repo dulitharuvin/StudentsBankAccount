@@ -28,11 +28,24 @@ public class Student extends Thread {
 
     @Override
     public void run() {
-        Transaction lottery = new Transaction(getName(), 100000);
-        account.deposit(lottery);
-        account.printStatement();
         try {
+            
+            Transaction lottery = new Transaction(getName(), 10000);
+            account.deposit(lottery);
             Thread.sleep(2000);
+
+            Transaction lottery2 = new Transaction(getName(), 20000);
+            account.withdrawal(lottery2);
+            Thread.sleep(2000);
+
+            Transaction lottery3 = new Transaction(getName(), 10000);
+            account.deposit(lottery3);
+            Thread.sleep(2000);
+
+            Transaction lottery4 = new Transaction(getName(), 1444);
+            account.withdrawal(lottery4);  
+            Thread.sleep(2000);   
+            
         } catch (InterruptedException ex) {
             System.out.println(ex.toString());
         }

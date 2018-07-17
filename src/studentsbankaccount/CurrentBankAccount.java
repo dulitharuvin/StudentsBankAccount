@@ -47,7 +47,7 @@ public class CurrentBankAccount implements BankAccount {
     @Override
     public synchronized void withdrawal(Transaction t) {
         
-        while (t.getAmount() <= accountBalance) {
+        while (t.getAmount() >= accountBalance) {
             try {
                 wait();
             } catch (InterruptedException ex) {
