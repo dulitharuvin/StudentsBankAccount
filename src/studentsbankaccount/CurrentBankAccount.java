@@ -41,14 +41,21 @@ public class CurrentBankAccount implements BankAccount {
     public synchronized void deposit(Transaction t) {
         accountBalance += t.getAmount();
         statement.addTransaction(accountHolder, accountNumber, accountBalance);
+        notify();
     }
 
     @Override
     public synchronized void withdrawal(Transaction t) {
-        if (!this.isOverdrawn()) {
-            accountBalance -= t.getAmount();
-            statement.addTransaction(accountHolder, accountNumber, accountBalance);
+        
+        while (t.getAmount() <= accountBalance) {
+            try {
+                wait();
+            } catch (InterruptedException ex) {
+                System.out.println(ex.toString());
+            }
         }
+        accountBalance -= t.getAmount();
+        statement.addTransaction(accountHolder, accountNumber, accountBalance);
     }
 
     @Override
@@ -60,5 +67,4 @@ public class CurrentBankAccount implements BankAccount {
     public void printStatement() {
         statement.print();
     }
-
 }
